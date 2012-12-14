@@ -15,7 +15,7 @@ int init() {
 
 
 int main(int argc, char **argv) {
-	if (darnitInit("darnitSticks!", "sticks") == NULL) {
+	if (darnitInit("darnitSticks!", "sticks", NULL) == NULL) {
 		fprintf(stderr, "libDarnit failed to init. Lets just give up...\n");
 		return -1;
 	}
