@@ -2,7 +2,7 @@
 
 
 int init() {
-	darnitFSMount("gfx.ldi");
+	d_fs_mount("gfx.ldi");
 	
 	if (playerInit() == -1);
 	else if (mapInit() == -1);
@@ -15,29 +15,29 @@ int init() {
 
 
 int main(int argc, char **argv) {
-	if (darnitInit("darnitSticks!", "sticks", NULL) == NULL) {
+	if (d_init("darnitSticks!", "sticks", NULL) == NULL) {
 		fprintf(stderr, "libDarnit failed to init. Lets just give up...\n");
 		return -1;
 	}
 
 	if (init() == -1)
-		darnitQuit();
+		d_quit();
 
 	for (;;) {
-		s.keys = darnitButtonGet();
-		darnitRenderBegin();
+		s.keys = d_keys_get();
+		d_render_begin();
 		
 		playerCamera();
 		mapDraw();
-		darnitRenderBlendingEnable();
+		d_render_blend_enable();
 		stickLoop();
 		playerDraw();
-		darnitRenderOffset(0, 0);
+		d_render_offset(0, 0);
 		textLoop();
-		darnitRenderBlendingDisable();
+		d_render_blend_disable();
 
-		darnitRenderEnd();
-		darnitLoop();
+		d_render_end();
+		d_loop();
 	}
 
 	return 0;
